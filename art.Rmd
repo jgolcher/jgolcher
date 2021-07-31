@@ -7,10 +7,7 @@ output:
       after_body: footer.html
 ---
 
-“Art is the only serious thing in the world. And the artist is the only person who is never serious.” 
-― Oscar Wilde
-
-Contact me you are interested in using any of these designs as digital images (CC-BY-NC) or for stickers/products with them check out my new [shop](https://www.redbubble.com/people/memegb/explore?page=1&sortOrder=recent)!
+Contact me if you are interested in using any of these digital images (CC-BY-NC). If you'd like to buy these as stickers: check out my new [Redbubble shop](https://www.redbubble.com/people/memegb/explore?page=1&sortOrder=recent)!
 
 ![](./cartoon_alone-01.png)
 ![](./cartoon_alone-02.png)
