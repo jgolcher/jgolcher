@@ -1,0 +1,23 @@
+--- 
+title: "Art"
+output: 
+  html_document:
+    css: CSSFonts.css
+    includes:
+      after_body: footer.html
+---
+
+“Art is the only serious thing in the world. And the artist is the only person who is never serious.” 
+― Oscar Wilde
+
+![](./cartoon_alone-01.png)
+![](./cartoon_alone-02.png)
+
+![](./cartoon_alone-03.png)
+
+![](./cartoon_alone-03.png)
+![](./cartoon_alone-04.png)
+
+![](./cartoon_alone-05.png)
+
+![](./cartoon_alone-06.png)
