@@ -18,6 +18,6 @@ h1.title {
 }
 </style>
 
-![](./cartoon_alone-01.png)
+![](./Chorei2-02.png)
 
 <center> Biodiversity. Evolution. Ecology. </center>
