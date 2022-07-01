@@ -29,6 +29,7 @@ output:
 
 ### Biodiversity
 How multiple species originate and co-occur remains a long-lasting enigma in evolutionary ecology. Biodiversity gradients in which most species are endemic represent natural experiments where we can test alternative hypotheses and gain key insights into the complex processes that lead to the buildup of species richness.  
+<img src="FW_2021.png" width="200">
 
 For my PhD dissertation research, I have conducted replicated fish surveys along the bathymetric gradient in Lake Tanganyika, Tanzania, to examine how the ecological context, particularly energy availability, shapes morphological divergence and species richness at a community level (in prep.). This research has unveiled that high-energy areas in shallow waters harbor both elevated community trait diversity and greater endemic species richness via the disproportionate accumulation of rare species.  
 
@@ -38,3 +39,5 @@ Lastly, using genomic data sets (genotyping-by-sequencing) paired with phenotypi
 
 ### Publications
 My [Google scholar](https://scholar.google.com/citations?user=WAxpZLEAAAAJ&hl=en&oi=ao) contains an up-to-date list of my scientific publications so far. Please contact me if you would like access to a pdf of any of these. *A Nature News and Views write-up of one of my publications written by Dr. Sebastian Kruppert and Dr. Adam Summers can be found [here](https://www.nature.com/articles/d41586-019-02008-6?utm_source=twt_nv&utm_medium=social&utm_campaign=newsandviews).
+
+
