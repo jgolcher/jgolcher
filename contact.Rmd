@@ -9,7 +9,7 @@ output:
 
 Email:
 
-golcher-benavidesj at lmc dot edu
+jgolcher at uwyo dot edu
 
 <!-- This adds the link to my ORCID iD -->
 
