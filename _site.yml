@@ -12,7 +12,7 @@ navbar:
     - text: "Research"
       href: research.html
     - text: "CV"
-      href: GolcherBJ_CV_30jun22.pdf
+      href: cv.html
     - text: "Art"
       href: art.html
     - text: "Contact"
