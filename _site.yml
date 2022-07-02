@@ -11,11 +11,11 @@ navbar:
       href: teaching.html
     - text: "Research"
       href: research.html
+    - text: "Code"
+      href: code.html
     - text: "CV"
       href: cv.html
     - text: "Art"
       href: art.html
-    - text: "Code"
-      href: code.html
     - text: "Contact"
       href: contact.html
