@@ -1,0 +1,663 @@
+\PassOptionsToPackage{unicode=true}{hyperref} % options for packages loaded elsewhere
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[]{article}
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\usepackage{fixltx2e} % provides \textsubscript
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provides euro and other symbols
+\else % if luatex or xelatex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Ligatures=TeX,Scale=MatchLowercase}
+\fi
+% use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+% use microtype if available
+\IfFileExists{microtype.sty}{%
+\usepackage[]{microtype}
+\UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\IfFileExists{parskip.sty}{%
+\usepackage{parskip}
+}{% else
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+}
+\usepackage{hyperref}
+\hypersetup{
+            pdftitle={Intro to R},
+            pdfborder={0 0 0},
+            breaklinks=true}
+\urlstyle{same}  % don't use monospace font for urls
+\usepackage[margin=1in]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{graphicx,grffile}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+\setlength{\emergencystretch}{3em}  % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{0}
+% Redefines (sub)paragraphs to behave more like sections
+\ifx\paragraph\undefined\else
+\let\oldparagraph\paragraph
+\renewcommand{\paragraph}[1]{\oldparagraph{#1}\mbox{}}
+\fi
+\ifx\subparagraph\undefined\else
+\let\oldsubparagraph\subparagraph
+\renewcommand{\subparagraph}[1]{\oldsubparagraph{#1}\mbox{}}
+\fi
+
+% set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+
+
+\title{Intro to R}
+\author{}
+\date{\vspace{-2.5em}}
+
+\begin{document}
+\maketitle
+
+The goal of this tutorial is to introduce you to one of the most
+commonly used programming languages in computational biology:
+\textbf{R}. Throughout this tutorial, you can think of learning
+\textbf{R} as learning how to use a specialized smartphone, and learning
+the specific \textbf{R packages} as the various apps designed to help
+you do different tasks computational biologists do.
+
+\hypertarget{step-1-create-an-account-with-rstudio-cloud}{%
+\subsubsection{Step 1: Create an account with RStudio
+Cloud}\label{step-1-create-an-account-with-rstudio-cloud}}
+
+\textbf{R \& R Studio are free!} For this tutorial, I recommend you use
+R Studio Cloud. To create a free account just access this website
+\emph{\url{https://login.rstudio.cloud}} and create a new account using
+your preferred email address.
+
+\hypertarget{step-1b-download-and-install-r-r-studio-alternative}{%
+\paragraph{Step 1b: Download and install R + R studio
+alternative}\label{step-1b-download-and-install-r-r-studio-alternative}}
+
+\textbf{R is free and will always be!} If after this workshop, you would
+like to go one step further, you can download R by accessing this
+website: \emph{\url{http://www.r-project.org/}} The download link will
+take you to a list of CRAN mirrors -- pick a mirror: e.g.~South Africa
+(for a list of the mirrors
+\emph{\url{https://cran.r-project.org/mirrors.html}}).
+
+Download R studio - free option;
+\emph{\url{http://www.rstudio.com/ide/download/}}.
+
+R studio is composed by \textbf{4 panels}: \textbf{1=}Top Left,
+\textbf{2=}Top Right, \textbf{3=}Bottom Left, and \textbf{4=}Bottom
+right. Note taking happens in \textbf{Panel 1}. \textbf{Panel 2} has
+``your environment'', every time you open R, you read data or create any
+kind of object in R it will be listed in your
+\textbf{\emph{Environment}} tab. Any code you run in \textbf{Panel 3}
+will appear also in Panel 2, under \textbf{\emph{History}} and anything
+that you visualize and more will be in \textbf{Panel 4}. We will delve
+more into the details soon.
+
+\emph{You will then need to set your working directory in your local
+computer if you chose the option to download R.}
+
+A working directory is the folder in your computer where all available
+data are \& results will be saved.To find out the current working
+directory, type getwd() and hit ENTER.To set a new working directory,
+you will specify the computer path to a folder, for example
+\emph{setwd(``\textasciitilde{}/Dropbox/USB'')}. You can also use the
+non-programming option by following the drop-down menu on R Studio:
+click on the tab called \emph{Session} -\textgreater{} \emph{Set Working
+Directory} -\textgreater{} \emph{Choose Directory} and just select the
+folder of your choice in your computer.
+
+\hypertarget{step-2-learn-the-help-command}{%
+\subsubsection{Step 2: Learn the Help
+Command}\label{step-2-learn-the-help-command}}
+
+\textbf{\emph{Practice makes perfect}} A way to learn is by deciphering
+error messages! So, if you get an error message, which is the output
+showing on red font, don't panic! Sometimes the best way to learn R is
+figuring out what the error messages mean and why do we get them. The
+easiest way to do this is to \textbf{google} your error message \& most
+likely someone has already found a solution - there is literally a ton
+of help online! Now since we are learning how to code, we can ask R for
+help using a specific function in a package by calling in R's built-in
+help function, or by directly typing a question mark before the function
+you are trying to use.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{#You want to learn what the function "help()" does in R}
+\NormalTok{?}\KeywordTok{help}\NormalTok{()}
+\KeywordTok{help}\NormalTok{() }
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{\emph{Question 1:}} How would you access built-in help about the
+R package \emph{dplyr}, this is a commonly used package in data
+wrangling, management or rearranging
+(\emph{\url{https://dplyr.tidyverse.org/}}).\\
+\textbf{\emph{A/}}
+
+\hypertarget{step-3-do-basic-calculations}{%
+\subsubsection{Step 3: Do basic
+calculations}\label{step-3-do-basic-calculations}}
+
+R is like a smartphone, and its built-in package called \textbf{base}
+can do everything calculators do \& much more! Let's explore using R as
+a calculator.
+
+Let's use R to do some simple calculations:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{#Sum}
+\DecValTok{3} \OperatorTok{+}\StringTok{ }\DecValTok{3}
+
+\CommentTok{#Exponential}
+\DecValTok{2}\OperatorTok{^-}\DecValTok{7}
+
+\CommentTok{#log function}
+\NormalTok{?}\KeywordTok{log}\NormalTok{() }\CommentTok{#add a question mark before a function to learn about what it does.}
+\KeywordTok{log}\NormalTok{(}\DecValTok{2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{\emph{Question 2:}} What type of logarithm (e.g.~natural log,
+common log-base 10, or binary logarithm) does the log function
+computes?\\
+\textbf{\emph{A/}}
+
+\hypertarget{but-then-why-using-r-and-not-a-calculator}{%
+\subsubsection{\texorpdfstring{\emph{But then why using R and not a
+calculator?}}{But then why using R and not a calculator?}}\label{but-then-why-using-r-and-not-a-calculator}}
+
+In R, anyone can create so called \textbf{functions} to create plots,
+maps, figures, organize data bases, conduct statistical analyses, make
+presentations, build websites, analyze whole genome sequences, among
+others. \#\#\# Step 4: Familiarize yourself with packages and versions
+Functions are compiled into \textbf{packages} (remember to think of
+these as the apps in a smartphone) published into the Comprehensive R
+Archive Network (CRAN), R's central software repository hosted by the R
+foundation. In March 2022, there were 18,948 R packages made available
+through CRAN. (\emph{\url{https://cran.r-project.org/web/packages/}})
+
+When using R or R studio, you can find all the built-in packages under
+\textbf{Packages} in Panel 4. To search for a specific package you can
+select ``Install'', this opens a new window in which you may select the
+CRAN repository (recommended option) and search the name of the package
+by typing the name of it under \textbf{Packages (separate multiple with
+space or comma)}. Make sure that under ``Install to Library''
+-\textgreater{} you use the default location to install R packages and
+double check that the box for ``install dependencies'' is ticked. We can
+also install packages by coding in the console (\textbf{Panel 3}).
+
+For instance search the package called \textbf{ggplot2} used to create
+elegant graphs/plots using your data. The amount of freely available
+tutorials varies a lot among packages, some plotting packages like
+ggplot have lots of tutorials online whereas more specific packages will
+have sparse info. Yet, almost all packages have a user guide available
+online or by simply clicking on the name of the package in Panel 4,
+under the \textbf{Packages} tab, or the \textbf{help()} function we
+examined earlier.
+
+It will become tricky to manage packages if these require different R
+versions (just like some apps in your smartphones that stopped being
+supported in old smartphones). It is important to keep the packages you
+often need organized and only load those that you will use, to avoid any
+problems. Also, since the community is actively developing \textbf{free}
+packages, there ways to install these are getting easier and easier.
+
+\hypertarget{step-5-familiarize-yourself-with-objects-in-r}{%
+\subsubsection{Step 5: Familiarize yourself with objects in
+R}\label{step-5-familiarize-yourself-with-objects-in-r}}
+
+R programming language recognizes a handful of fundamental \emph{units}
+used to perform different actions, we call those \emph{objects}. The
+main types of objects in r are:
+
+\textbf{Functions:} In R, a function is an object that we will
+\emph{code}. Think of this as a task you want the computer to do for
+you. We will use functions by specifying instructions using
+\emph{arguments} (inside of the parentheses) that may be necessary for
+the function to accomplish the actions. The basic syntax of a function
+can look as simple as this: \emph{help()} or \emph{log(x,base=y)}.
+
+\textbf{Vectors:} Vectors are variables, or series of values of the same
+class, they can be continuous (``numeric''), categorical (``factor'')",
+etc.
+
+\textbf{Data Frames and Tibbles:} A data frame is a matrix composed by
+variables, but formatting variables as a data frame allows handling
+versatility in your R studio environment. Many functions require
+formatting your data as data frame. We often need to try out different
+ways to re-organize our data, so to do this we will take advantage of a
+new, simpler and versatile version of the \emph{data frame} object
+called the \emph{tibble} to be used along with the package \emph{dplyr}.
+
+\textbf{List:} A list can comprise all sorts of object types. Few
+functions require data as lists.
+
+\textbf{Other:} Other less frequently used objects include: scalars (a
+single value), matrices (similar to data frame, but allow objects with
+varying lengths).
+
+Let's explore these in R:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{#Object}
+\NormalTok{x <-}\StringTok{ }\DecValTok{3} \OperatorTok{+}\StringTok{ }\DecValTok{5}
+\NormalTok{x}
+
+\CommentTok{#Vector}
+\NormalTok{y <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{3}\NormalTok{, }\DecValTok{4}\NormalTok{, }\DecValTok{5}\NormalTok{) }
+\NormalTok{y}
+
+\KeywordTok{seq}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{10}\NormalTok{, }\DataTypeTok{by =} \DecValTok{1}\NormalTok{)}\CommentTok{#Creates a sequence following specific rules }
+
+\NormalTok{vector1<-}\KeywordTok{seq}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{10}\NormalTok{,  }\DataTypeTok{by =} \DecValTok{1}\NormalTok{)}
+\NormalTok{vector2<-}\KeywordTok{seq}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{20}\NormalTok{, }\DataTypeTok{by =} \DecValTok{2}\NormalTok{)}
+\NormalTok{vector3<-}\KeywordTok{seq}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{30}\NormalTok{,  }\DataTypeTok{by =} \DecValTok{3}\NormalTok{)}
+\NormalTok{vector4<-}\KeywordTok{c}\NormalTok{(}\StringTok{"A"}\NormalTok{, }\StringTok{"B"}\NormalTok{, }\StringTok{"C"}\NormalTok{, }\StringTok{"D"}\NormalTok{, }\StringTok{"E"}\NormalTok{, }\StringTok{"F"}\NormalTok{,}\StringTok{"G"}\NormalTok{, }\StringTok{"H"}\NormalTok{, }\StringTok{"I"}\NormalTok{, }\StringTok{"J"}\NormalTok{)}
+
+\CommentTok{#Data frame}
+\NormalTok{df1<-}\KeywordTok{data.frame}\NormalTok{(vector1,vector2,vector3, vector4)}
+
+\CommentTok{#Tibble}
+\NormalTok{tibble1<-tibble}\OperatorTok{::}\KeywordTok{tibble}\NormalTok{(df1)}
+
+\CommentTok{#List}
+\NormalTok{list1<-}\StringTok{ }\KeywordTok{list}\NormalTok{(df1, vector1, vector2, vector3, vector4, x, y) }
+
+\CommentTok{#Note that giving a name (e.g, "df1") will have downstream implications.}
+\CommentTok{#It is important to give your objects unique, intuitive, short & simple names.}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{\emph{Question 3:}} What is an advantage and a disadvantage of
+using a list?\\
+\textbf{\emph{A/}}
+
+\hypertarget{step-6-familiarize-yourself-with-functions-in-r}{%
+\subsubsection{Step 6: Familiarize yourself with functions in
+R}\label{step-6-familiarize-yourself-with-functions-in-r}}
+
+Here try to find a few more of the many built-in functions in r, for
+example:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{#Calculate mean}
+\NormalTok{?mean}
+\KeywordTok{mean}\NormalTok{(vector1)}
+\CommentTok{#Sum values in a vector using}
+\NormalTok{?sum}
+\KeywordTok{sum}\NormalTok{(vector2)}
+
+\CommentTok{#If we want to build a data frame we *need* to have a set of vectors all of the same length }
+\CommentTok{#Figure out length of a vector:}
+\KeywordTok{length}\NormalTok{(vector3)}
+\CommentTok{#Retrieve unique values in vector}
+\KeywordTok{unique}\NormalTok{(vector4)}
+\CommentTok{#Sort values in a vector }
+\NormalTok{df1}\OperatorTok{$}\NormalTok{vector5<-}\KeywordTok{sort}\NormalTok{(vector4, }\DataTypeTok{decreasing =} \OtherTok{TRUE}\NormalTok{)}
+\CommentTok{#Sample 6 values at random from a numeric vector}
+\KeywordTok{sample}\NormalTok{(vector3, }\DecValTok{3}\NormalTok{)}
+\CommentTok{#Sample 4 letters at random from a character vector}
+\KeywordTok{sample}\NormalTok{(vector4, }\DecValTok{4}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{\emph{Question 4:}} How would you modify the \emph{sample()}
+function to sample only three values at random, allowing a given number
+or character to appear more than once?\\
+\textbf{\emph{A/}}
+
+You can also use R to plot functions just as most scientific calculators
+do. But before coding plots, we will learn a few more R commands to
+extract information from data frames or similar objects.
+
+\hypertarget{step-7-practice-using-data-frames}{%
+\subsubsection{Step 7: Practice using data
+frames}\label{step-7-practice-using-data-frames}}
+
+Very often we want to summarize, visualize, simulate or analyze existing
+data, for that, one can start by using the data frame format in R. Here
+we are going to explore functions using very basic data frames, to learn
+more about how the data look like.
+
+Note that in R studio, going to \textbf{Panel 2} and simply clicking on
+a given data frame, will retrieve all its contents in a new tab in
+\textbf{Panel 1}.
+
+\textbf{\emph{Question 5:}} How would you modify one of this functions
+(e.g. \emph{mean()}) to deal with missing values?\\
+\textbf{\emph{A/}}
+
+\hypertarget{step-8-practice-exporting-data-frame}{%
+\subsubsection{Step 8: Practice exporting data
+frame}\label{step-8-practice-exporting-data-frame}}
+
+If you want to save/export the data frame you created in R, you just
+need to call a function named \emph{write.csv}. To export your data
+frame, just name the file. I recommend you save your traditional data
+files (aka. \emph{excel-like} tables) to use in R as a
+\textbf{\emph{.csv}} (\textbf{c}omma-\textbf{s}eparated \textbf{v}alues)
+file format.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{#Exporting data}
+\KeywordTok{write.csv}\NormalTok{(df1, }\StringTok{"df_2022jul2.csv"}\NormalTok{) }
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{\emph{Question 6:}} Where is the file saved? Use the getwd()
+function to find out. How can you export text or a list that was created
+using R?\\
+\textbf{\emph{A/}}
+
+\hypertarget{step-9-practice-importing-data-in-r}{%
+\subsubsection{Step 9: Practice importing data in
+R}\label{step-9-practice-importing-data-in-r}}
+
+Very often we have data that we want to import into R, there are several
+formats that are compatible with R. Data tables can be generated in R or
+other software, for example: excel, statistical software or google
+sheets (free). When data is not generated in R, data, can still easily
+be imported but there are distinct ways to import files depending the
+format of the data to be imported. Common formats include data as: text
+or \emph{.txt}, comma separated values or \textbf{\emph{.csv}} and/or as
+excel \emph{.xlsx} (only the latter requires installing a package called
+\emph{.openxlsx}. I recommend that you always save or import the data as
+\textbf{\emph{.csv}}.
+
+We previouly saved our data as a \emph{.csv}, to import these data, we
+can just use the \textbf{read.csv()} function \textbf{\emph{-as long as
+the file is contained in our current folder used as working directory.}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{#Import data as csv}
+\NormalTok{imported_df1<-}\KeywordTok{read.csv}\NormalTok{(}\StringTok{"df_2022jul2.csv"}\NormalTok{, }\DataTypeTok{header=}\NormalTok{T)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{step-10-create-plots}{%
+\subsubsection{Step 10: Create plots}\label{step-10-create-plots}}
+
+We can use base R to create quick plots and identify patterns. We then
+can export these as a \textbf{\emph{.pdf}} file format. Plotting is one
+of the biggest strengths of R. The possibilities are unlimited and there
+is a universe of tutorials out there to show you how to customize plots.
+Over the years I have moved on from base R into using the package
+\emph{ggplot2} which we will explore next.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{#First: Plotting with base R}
+\CommentTok{#Plot 1 continuous variable}
+\KeywordTok{hist}\NormalTok{(}\KeywordTok{sample}\NormalTok{(}\KeywordTok{seq}\NormalTok{(}\DecValTok{1}\OperatorTok{:}\DecValTok{100}\NormalTok{),}\DecValTok{200}\NormalTok{, }\DataTypeTok{replace=}\OtherTok{TRUE}\NormalTok{), }\DataTypeTok{breaks=}\DecValTok{25}\NormalTok{, }\DataTypeTok{main=}\StringTok{""}\NormalTok{) }\CommentTok{#Note Question 7}
+
+\CommentTok{#Plot 2 continuous variables}
+\KeywordTok{plot}\NormalTok{(df1}\OperatorTok{$}\NormalTok{Cont1}\OperatorTok{~}\NormalTok{df1}\OperatorTok{$}\NormalTok{Cont2)}
+
+\CommentTok{#Plot 1 continuous variable and 1 Binary/Categorical}
+\KeywordTok{boxplot}\NormalTok{(df1}\OperatorTok{$}\NormalTok{Cont1}\OperatorTok{~}\NormalTok{df1}\OperatorTok{$}\NormalTok{Binary1)}
+
+\CommentTok{#To export a pdf file with multiple figures:}
+\KeywordTok{pdf}\NormalTok{(}\StringTok{"plotsA_2022jul2.pdf"}\NormalTok{)}
+\KeywordTok{hist}\NormalTok{(}\KeywordTok{sample}\NormalTok{(}\KeywordTok{seq}\NormalTok{(}\DecValTok{1}\OperatorTok{:}\DecValTok{100}\NormalTok{),}\DecValTok{200}\NormalTok{, }\DataTypeTok{replace=}\OtherTok{TRUE}\NormalTok{), }\DataTypeTok{breaks=}\DecValTok{25}\NormalTok{, }\DataTypeTok{main=}\StringTok{""}\NormalTok{)}
+\KeywordTok{plot}\NormalTok{(df1}\OperatorTok{$}\NormalTok{Cont1}\OperatorTok{~}\NormalTok{df1}\OperatorTok{$}\NormalTok{Cont2)}
+\KeywordTok{boxplot}\NormalTok{(df1}\OperatorTok{$}\NormalTok{Cont1}\OperatorTok{~}\NormalTok{df1}\OperatorTok{$}\NormalTok{Binary1)}
+\KeywordTok{dev.off}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{\emph{Question 7:}} What happens when we remove \emph{main=""}.
+How would you go about to rename your y axis label?\\
+\textbf{\emph{A/}}
+
+Next we will use data on the survival status of individual passengers on
+board of the \textbf{\emph{Titanic}} ship. Visit my google drive to
+download the titanic data set \textbf{.csv} format:
+\emph{\url{https://drive.google.com/file/d/1jhGvXkYSrtsgmEnZ2GBR6AzBy1BUGbNg/view?usp=sharing}}
+
+After successfully downloading \emph{trains.csv} file you would be able
+to use the \textbf{\emph{Upload}} option in \textbf{Panel 4}. Simply
+choose the file to upload, and hit \textbf{\emph{Ok}}. Once you do this,
+it will be available in your environment.
+
+\textbf{\emph{Question 8:}} Did you get an error trying to upload this
+data file? How did you go about to fix this error?\\
+\textbf{\emph{A/}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{#Import the data set}
+\NormalTok{titanic <-}\StringTok{ }\KeywordTok{read.csv}\NormalTok{(}\StringTok{'trains.csv'}\NormalTok{,}\DataTypeTok{stringsAsFactors =}\NormalTok{ F, }\DataTypeTok{header =}\NormalTok{ T)}
+
+\CommentTok{#Explore the data set using the functions we learned before}
+\KeywordTok{head}\NormalTok{(titanic) }\CommentTok{#to see first 10 rows and column names}
+\KeywordTok{summary}\NormalTok{(titanic) }\CommentTok{#to get a summary of each column}
+\CommentTok{#***Note that R describes missing data as "NA"}
+
+\CommentTok{#Plot to summarize passenger age with base R}
+\KeywordTok{hist}\NormalTok{(}\KeywordTok{na.omit}\NormalTok{(titanic}\OperatorTok{$}\NormalTok{age),}\DataTypeTok{col=}\KeywordTok{rainbow}\NormalTok{(}\KeywordTok{length}\NormalTok{(}\DecValTok{1}\OperatorTok{:}\DecValTok{8}\NormalTok{)),}\DataTypeTok{main=}\StringTok{""}\NormalTok{,}\DataTypeTok{xlab=}\StringTok{"age"}\NormalTok{, }\DataTypeTok{ylab=}\StringTok{"count"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{publication-ready-plots-using-ggplot2-and-dplyr}{%
+\subparagraph{Publication-ready plots using ggplot2 and
+dplyr}\label{publication-ready-plots-using-ggplot2-and-dplyr}}
+
+Base R plots can be modified to look as pretty/detailed as you would
+like them to look. However, packages like \textbf{ggplot2} make all the
+heavy-lifting for you. Next we will learn how to make a few simple, yet
+publication-level, \emph{nice looking plots} using \textbf{ggplot2} and
+the data management package \textbf{dplyr}. This tutorial does not cover
+data wrangling using dplyr, but there are many out there that do!
+
+We just created a simple histogram using base R to use as comparison
+with the same plot created using \emph{ggplot2} and associated packages.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{#Now let's use dplyr and ggplot2}
+\CommentTok{#Note that the code gets increasingly complex, as you try to make}
+\CommentTok{#better-looking, customized figures in R}
+\NormalTok{titanic }\OperatorTok{%>%}\StringTok{ }\KeywordTok{head}\NormalTok{(}\DecValTok{10}\NormalTok{) }\CommentTok{#Overview of the first 10 rows.}
+\NormalTok{titanic }\OperatorTok{%>%}\StringTok{ }\KeywordTok{describe_tbl}\NormalTok{() }\CommentTok{#Describes data.}
+
+\CommentTok{#Plot to summarize passenger age with ggplot}
+\NormalTok{p1<-titanic }\OperatorTok{%>%}\StringTok{ }\KeywordTok{drop_na}\NormalTok{() }\OperatorTok{%>%}\StringTok{ }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\NormalTok{age))}\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_histogram}\NormalTok{(}\DataTypeTok{fill=}\KeywordTok{rainbow}\NormalTok{(}\KeywordTok{length}\NormalTok{(}\DecValTok{1}\OperatorTok{:}\DecValTok{8}\NormalTok{)),}\DataTypeTok{bins=}\DecValTok{8}\NormalTok{,}\DataTypeTok{show.legend =} \OtherTok{FALSE}\NormalTok{)}\OperatorTok{+}
+\StringTok{  }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{x =} \StringTok{"age"}\NormalTok{)}
+\NormalTok{p1}
+
+
+\CommentTok{#We can combine multiple categorical and continuous variables}
+\NormalTok{p2<-}\KeywordTok{ggplot}\NormalTok{(}\DataTypeTok{data=}\KeywordTok{na.omit}\NormalTok{(titanic),}
+           \KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\KeywordTok{factor}\NormalTok{(sex),}\DataTypeTok{y=}\NormalTok{age,}\DataTypeTok{fill=}\KeywordTok{factor}\NormalTok{(survived)))}\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_boxplot}\NormalTok{()}\OperatorTok{+}
+\StringTok{  }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{title=}\StringTok{"Survival of passengers by sex, age and class"}\NormalTok{,}
+       \DataTypeTok{subtitle=}\StringTok{"Not everyone had equal chances of surviving"}\NormalTok{, }
+       \DataTypeTok{caption=}\StringTok{"Plot by J.Golcher"}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{xlab}\NormalTok{(}\StringTok{"Passenger class"}\NormalTok{)}\OperatorTok{+}
+\StringTok{  }\KeywordTok{ylab}\NormalTok{(}\StringTok{"age"}\NormalTok{)}\OperatorTok{+}
+\StringTok{  }\KeywordTok{facet_wrap}\NormalTok{(}\OperatorTok{~}\KeywordTok{factor}\NormalTok{(pclass))}\OperatorTok{+}
+\StringTok{  }\KeywordTok{scale_fill_manual}\NormalTok{(}\DataTypeTok{values=}\KeywordTok{c}\NormalTok{(}\StringTok{"mediumvioletred"}\NormalTok{,}\StringTok{"cornflowerblue"}\NormalTok{),}
+                    \DataTypeTok{name=}\StringTok{""}\NormalTok{,}\DataTypeTok{breaks=}\KeywordTok{c}\NormalTok{(}\StringTok{"0"}\NormalTok{, }\StringTok{"1"}\NormalTok{),}\DataTypeTok{labels=}\KeywordTok{c}\NormalTok{(}\StringTok{"died"}\NormalTok{, }\StringTok{"survived"}\NormalTok{))}\OperatorTok{+}
+\StringTok{  }\KeywordTok{theme}\NormalTok{(}\DataTypeTok{plot.title =} \KeywordTok{element_text}\NormalTok{(}\DataTypeTok{face =} \StringTok{"bold"}\NormalTok{))}
+
+\NormalTok{p2}
+
+\CommentTok{#Let's explore other functions and plots in the package explore}
+\CommentTok{#First let's make age a categorical variable:}
+\NormalTok{titanic}\OperatorTok{$}\NormalTok{age_cat <-}\StringTok{ }\KeywordTok{cut}\NormalTok{(titanic}\OperatorTok{$}\NormalTok{age,}\DataTypeTok{breaks=}\KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{19}\NormalTok{,}\DecValTok{60}\NormalTok{,}\DecValTok{90}\NormalTok{),}
+                       \DataTypeTok{labels=}\KeywordTok{c}\NormalTok{(}\StringTok{"children"}\NormalTok{,}\StringTok{"adult"}\NormalTok{,}\StringTok{"senior"}\NormalTok{))}
+
+\CommentTok{#We will then have to load tibble and explore}
+\KeywordTok{library}\NormalTok{(tibble)}
+\KeywordTok{library}\NormalTok{(explore)}
+
+\CommentTok{#This is perhaps unnecessary but just to be sure}
+\NormalTok{titanic2 <-}\StringTok{ }\KeywordTok{tibble}\NormalTok{(titanic) }\CommentTok{#data frame into tibble}
+
+\CommentTok{#We would like to reorganize our data as counts per categories}
+\NormalTok{titan_sum<-titanic2 }\OperatorTok{%>%}\StringTok{ }\KeywordTok{group_by}\NormalTok{(pclass, survived,age_cat,sex) }\OperatorTok{%>%}\StringTok{ }\NormalTok{dplyr}\OperatorTok{::}\KeywordTok{count}\NormalTok{()}
+
+\NormalTok{titan_sum }\OperatorTok{%>%}\StringTok{ }\KeywordTok{describe_tbl}\NormalTok{(}\DataTypeTok{n=}\NormalTok{n) }\CommentTok{#describes data and NA}
+
+\CommentTok{#Creating plots using explore}
+\NormalTok{p3<-titan_sum }\OperatorTok{%>%}\StringTok{ }\KeywordTok{explore}\NormalTok{(age_cat, }\DataTypeTok{n =}\NormalTok{ n) }\CommentTok{#passenger class distrib.}
+\NormalTok{p4<-titan_sum }\OperatorTok{%>%}\StringTok{ }\KeywordTok{explore}\NormalTok{(age_cat, }\DataTypeTok{target =}\NormalTok{ survived, }\DataTypeTok{n =}\NormalTok{ n)}
+\NormalTok{p5<-titan_sum }\OperatorTok{%>%}\StringTok{ }\KeywordTok{explore_all}\NormalTok{(}\DataTypeTok{n =}\NormalTok{ n) }\CommentTok{#To see counts for all vars.}
+\NormalTok{p6<-titan_sum }\OperatorTok{%>%}\StringTok{ }\KeywordTok{explore_all}\NormalTok{(}\DataTypeTok{target =}\NormalTok{ survived, }\DataTypeTok{n =}\NormalTok{ n, }\DataTypeTok{split =} \OtherTok{TRUE}\NormalTok{)}
+
+\CommentTok{#A package to save ggplots}
+\KeywordTok{library}\NormalTok{(patchwork)}
+\NormalTok{p<-(p1)}\OperatorTok{/}\NormalTok{(p2)}
+\CommentTok{#Save plots}
+\KeywordTok{ggsave}\NormalTok{(}\StringTok{"plotsB_2022jul2.pdf"}\NormalTok{, p)}
+\end{Highlighting}
+\end{Shaded}
+
+In this example we went beyond simply plotting and we actually combined
+data re-organization with visualization, and figure export using the
+packages \emph{dplyr}, \emph{ggplot2}, \emph{tibble}, \emph{explore},
+and \emph{patchwork}.
+
+\textbf{\emph{Question 9:}} How would you modify this code to save the
+plots next to one another using \emph{patchwork} (instead of one on top
+ot the other).\\
+\textbf{\emph{A/}}
+
+Now we have explored how to make a few plots using base R and some of
+the newest plotting options available associated to the package
+\emph{ggplot2}. Still, remember that this is the very tiny tip of the
+iceberg It will be up to you to take it from here and make significant
+progress in your R journey coding and making plots. There are almost too
+many resources online to learn how to visualize data using R, but as a
+start visit: \emph{\url{https://www.r-graph-gallery.com/}} to get
+inspired with a gallery of different types of charts.
+
+\hypertarget{now-we-will-end-with-a-familiar-statistical-test.}{%
+\subsubsection{Now we will end with a familiar statistical
+test.}\label{now-we-will-end-with-a-familiar-statistical-test.}}
+
+As a biologist, one of the first statistical tests we learn is how to
+calculate a Chi-squared value. For instance, such tests are used in the
+context of transmission genetics, together with the Chi-squared value
+distribution table to test for significance rejecting a null hypothesis
+of observations deviating or not from expected. As you already guessed
+it, R can do this for you and much more. We will start by learning how
+to do this test using the console, and review how to interpret results
+of the \emph{chisq.test()} function in base R using the Titanic toy data
+set.
+
+\textbf{\emph{Question 10:}} What would be \textbf{1)}the null and
+\textbf{2)}the alternative hypotheses for a Chi-squared test looking at
+passenger survival by class? After running the code below:
+\textbf{3)}Was the p-value significant? \textbf{4)} What does this
+mean?\\
+\textbf{\emph{A/}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{#Chi-squared test using R}
+\NormalTok{res1<-}\KeywordTok{chisq.test}\NormalTok{(titanic}\OperatorTok{$}\NormalTok{pclass, titanic}\OperatorTok{$}\NormalTok{survived)}
+\NormalTok{res1}
+\NormalTok{res1}\OperatorTok{$}\NormalTok{observed}
+\NormalTok{res1}\OperatorTok{$}\NormalTok{expected}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{citing-r-and-rpackages}{%
+\subsubsection{Citing R and Rpackages}\label{citing-r-and-rpackages}}
+
+It is key to give credit to the generous people who develop packages for
+free, often with public funds from universities and other research
+institutions. Providing authors with the credit they deserve also
+encourages funding agencies to support their work, which ultimately
+benefits the entire community of R users.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{citation}\NormalTok{() }\CommentTok{#To cite R}
+\KeywordTok{R.Version}\NormalTok{() }\CommentTok{#Figure out R version}
+\KeywordTok{RStudio.Version}\NormalTok{() }\CommentTok{#To cite R studio}
+\CommentTok{#To cite all the packages  used in this tutorial:}
+\KeywordTok{citation}\NormalTok{(}\StringTok{"ggplot2"}\NormalTok{)}
+\KeywordTok{citation}\NormalTok{(}\StringTok{"dplyr"}\NormalTok{)}
+\KeywordTok{citation}\NormalTok{(}\StringTok{"tibble"}\NormalTok{)}
+\KeywordTok{citation}\NormalTok{(}\StringTok{"explore"}\NormalTok{)}
+\KeywordTok{citation}\NormalTok{(}\StringTok{"patchwork"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\emph{This mini-workshop was modified from the 2018 Workshop notes Intro
+to R for fisheries researchers in Tanzania co-taught by Dr.~Jessica Rick
+and Dr.~Jimena Golcher-Benavides. I would like to thank the generous R
+\& R learning community for all the high-quality learning resources
+freely available online.}
+
+For more learning resources on how to use R \& R Studio, check out these
+guidelines written by Thomas Mock:
+\emph{\url{https://www.rstudio.com/resources/webinars/a-gentle-introduction-to-tidy-statistics-in-r/}}.
+
+\end{document}
