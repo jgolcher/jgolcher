@@ -1,0 +1,11 @@
+--- 
+title: "code"
+output: 
+  html_document:
+    css: ['CSSBackgrounds.css', 'CSSFonts.css']
+    includes:
+      after_body: footer.html
+---
+Please click [2022_R_Tutorial](IntroR_2022jul2.pdf) to find a pdf file with a my most recent R tutorial for beginners. 
+Rmarkdown and data can be accessed here [here](https://github.com/jgolcher/repository/tree/main/docs/Rtutorial). 
+
