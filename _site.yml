@@ -15,5 +15,7 @@ navbar:
       href: cv.html
     - text: "Art"
       href: art.html
+    - text: "Code"
+      href: code.html
     - text: "Contact"
       href: contact.html
