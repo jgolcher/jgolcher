@@ -19,19 +19,15 @@ output:
 
 <!-- This adds the floating image of my study organisms to the right of the text.  -->
 
-<script>
-   $(document).ready(function() {
-     $head = $('#header');
-     $head.prepend('<img src=\"websitesidebar-01.png\" style=\"float: right;width: 250px;\"/>')
-   });
-</script>
+<p style="max-width: 40%; float: right;">
+![Alt Picture Text](FW_2021.png "tree")
+</p>
 
 
 ### Biodiversity
 How multiple species originate and co-occur remains a long-lasting enigma in evolutionary ecology. Biodiversity gradients in which most species are endemic represent natural experiments where we can test alternative hypotheses and gain key insights into the complex processes that lead to the buildup of species richness.  
-<img src="FW_2021.png" width="200">
 
-For my PhD dissertation research, I have conducted replicated fish surveys along the bathymetric gradient in Lake Tanganyika, Tanzania, to examine how the ecological context, particularly energy availability, shapes morphological divergence and species richness at a community level (in prep.). This research has unveiled that high-energy areas in shallow waters harbor both elevated community trait diversity and greater endemic species richness via the disproportionate accumulation of rare species.  
+For my PhD dissertation research, I have conducted replicated fish surveys along the bathymetric gradient in Lake Tanganyika, Tanzania, to examine how the ecological context, particularly energy availability, shapes morphological divergence and species richness at a community level using phylogenetic methods (in prep.). This research has unveiled that high-energy areas in shallow waters harbor both elevated community trait diversity and greater endemic species richness via the disproportionate accumulation of rare species.  
 
 My research interests also involve conducting field and laboratory-based experiments that serve as “proof of concept” for available theory in evolutionary ecology. For instance, I have experimentally tested whether predators can help maintain a color-polymorphism in Nicaraguan cichlid fishes for my [master’s thesis](https://besjournals.onlinelibrary.wiley.com/doi/abs/10.1111/1365-2656.12693). More recently, I have piloted behavioral assays testing for intraspecific aggression biases that could help mediate coexistence of sympatric and congeneric fishes in Lake Tanganyika (in prep.). An [idea](https://www.journals.uchicago.edu/doi/abs/10.1086/704169) I am particularly drawn to is the context-dependent nature of specialization, and how food resource availability may shape the evolution of specialized foraging strategies.  
 
