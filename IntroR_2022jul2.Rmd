@@ -1,10 +1,10 @@
 ---
 title: 'Intro to R in 15 Steps'
 output:
+  pdf_document: default
+  html_notebook: default
   html_document:
     df_print: paged
-  html_notebook: default
-  pdf_document: default
 ---
 <!--# Modified from Workshop Intro to R 2018 co-taught by Dr. Jessica Rick and Dr. Jimena Golcher-Benavides-->
 
@@ -69,7 +69,7 @@ When using R or R studio, you can find all the built-in packages under **Package
 
 For instance search the package called **ggplot2** used to create elegant graphs/plots using your data. The amount of freely available tutorials varies a lot among packages, some plotting packages like ggplot have lots of tutorials online whereas more specific packages will have sparse info. Yet, almost all packages have a user guide available online or by simply clicking on the name of the package in Panel 4, under the **Packages** tab, or the **help()** function we examined earlier.
 
-```{r, eval=FALSE,echo=FALSE,results='hide'}
+```{r, eval=FALSE}
 #Example installing packages in R
 install.packages("ggplot2") #used to create nice plots
 install.packages("dplyr") #used to do data management
@@ -372,7 +372,7 @@ ggsave("plotsB_2022jul2.pdf", p)
 
 Now we have explored how to make a few plots using base R and some of the newest plotting options available associated to the package *ggplot2*. Still, remember that this is the very tiny tip of the iceberg. It will be up to you to take it from here and make significant progress in your R journey coding and making plots. There are almost too many resources online to learn how to visualize data using R, but as a start visit: *https://www.r-graph-gallery.com/* to get inspired with a gallery of different types of charts.
 
-### Step 14:  Run a simple statistical test.
+### Step 14:  Run a simple statistical test
 As a biologist, one of the first statistical tests we learn is how to calculate a Chi-squared value. For instance, such tests are used in the context of transmission genetics, together with the Chi-squared value distribution table to test for significance rejecting a null hypothesis of observations deviating or not from expected. As you already guessed it, R can do this for you and much more. We will start by learning how to do this test using the console, and review how to interpret results of the *chisq.test()* function in base R using the Titanic toy data set.
 
 ***Question 10:*** What would be **1)**the null and **2)**the alternative hypotheses for a Chi-squared test looking at passenger survival by class? After running the code below: **3)**Was the p-value significant? **4)** What does this mean?  
@@ -406,5 +406,4 @@ citation("patchwork")
 *This mini-workshop was modified from the 2018 Workshop notes Intro to R for fisheries researchers in Tanzania co-taught by Dr. Jessica Rick and Dr. Jimena Golcher-Benavides. I would like to thank the generous R & R learning community for all the high-quality learning resources freely available online.*
 
 For more learning resources on how to use R & R Studio, check out these guidelines written by Thomas Mock: *https://www.rstudio.com/resources/webinars/a-gentle-introduction-to-tidy-statistics-in-r/*.
-
 
