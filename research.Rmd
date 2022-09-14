@@ -22,9 +22,10 @@ output:
 <p style="max-width: 40%; float: right;">
 ![Alt Picture Text](FW_2021.png "tree")
 </p>
+#### Soon + info here on current invasive carp research -stay tuned!
+-Under construction- 09/14/2022
 
-
-### Biodiversity
+#### Biodiversity
 How multiple species originate and co-occur remains a long-lasting enigma in evolutionary ecology. Biodiversity gradients in which most species are endemic represent natural experiments where we can test alternative hypotheses and gain key insights into the complex processes that lead to the buildup of species richness.  
 
 For my PhD dissertation research, I have conducted replicated fish surveys along the bathymetric gradient in Lake Tanganyika, Tanzania, to examine how the ecological context, particularly energy availability, shapes morphological divergence and species richness at a community level using phylogenetic methods (in prep.). This research has unveiled that high-energy areas in shallow waters harbor both elevated community trait diversity and greater endemic species richness via the disproportionate accumulation of rare species.  
