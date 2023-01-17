@@ -253,10 +253,10 @@ $(document).ready(function () {
   <a href="about.html">About Me</a>
 </li>
 <li>
-  <a href="teaching.html">Teaching</a>
+  <a href="research.html">Research</a>
 </li>
 <li>
-  <a href="research.html">Research</a>
+  <a href="teaching.html">Teaching</a>
 </li>
 <li>
   <a href="code.html">Code</a>
@@ -287,7 +287,7 @@ $(document).ready(function () {
 </div>
 
 
-<!--# Modified from Workshop Intro to R 2018 co-taught by Dr. Jessica Rick and Dr. Jimena Golcher-Benavides-->
+<!--# Modified from Workshop Intro to R 2018 co-taught by Dr. Jessica Rick and Dr. Jimena Golcher-Benavides, Last Update: 2023 Jan 17-->
 <p>The goal of this tutorial is to introduce you to one of the most commonly used programming languages in computational biology: <strong>R</strong>. Throughout this tutorial, you can think of learning <strong>R</strong> as learning how to use a specialized smartphone, and learning the specific <strong>R packages</strong> as the various apps designed to help you do different tasks computational biologists do.</p>
 <div id="step-1-create-an-account-with-rstudio-cloud" class="section level3">
 <h3>Step 1: Create an account with RStudio Cloud</h3>
@@ -474,16 +474,21 @@ hist(na.omit(titanic$age),col=rainbow(length(1:8)),main=&quot;&quot;,xlab=&quot;
 <p>We just created a simple histogram using base R to use as comparison with the same plot created using <em>ggplot2</em> and associated packages.</p>
 <pre class="r"><code>#Now let&#39;s use dplyr and ggplot2
 #Part 1
-#Note that the code gets increasingly complex, as you try to make
-#better-looking, customized figures in R
-titanic %&gt;% head(10) #Overview of the first 10 rows.
-titanic %&gt;% describe_tbl() #Describes data.
+#Note how the base R grammar we learned earlier differs a lot from &quot;ggplot2&quot; and &quot;dplyr&quot; (a series of packages as part of the &quot;Tidyverse&quot;) we will use now to visualize the same data:
+titanic %&gt;% head(10) #Overview of the first 10 rows
+only_1class &lt;- filter(titanic, pclass == &quot;1&quot;) #Extract rows that match a given criteria (like subset() in base R)
+countstitanic&lt;- titanic %&gt;% count(sex,pclass,age, sort = TRUE)
+widetitanic &lt;- countstitanic %&gt;% spread(sex,n) #Sometimes we want to have a &quot;wide&quot; format
+longtitanic &lt;- widetitanic %&gt;% gather( sex, n, female:male, factor_key=TRUE)#this can reverse back to &quot;long&quot;
+titanic %&gt;% describe_tbl() #Describes data
+summary_titanic&lt;- titanic %&gt;%group_by(sex, pclass) %&gt;%dplyr::summarize(Mean = mean(age, na.rm=TRUE))#Generate summary
 
 #Plot to summarize passenger age with ggplot
 p1&lt;-titanic %&gt;% drop_na() %&gt;% ggplot(aes(x=age))+
   geom_histogram(fill=rainbow(length(1:8)),bins=8,show.legend = FALSE)+
   labs(x = &quot;age&quot;)
-p1</code></pre>
+p1
+#Packages like &quot;dplyr&quot; and &quot;ggplot2&quot; do a lot of the hard initial coding/data wrangling for you, giving you more time to focus on more advanced functions to use with your data.</code></pre>
 <p>The histogram created using this simple ggplot Rcode is more attractive, but we can do a lot more to customize this plot. For instance you can try adding different themes (e.g., classic, bw, minimal). Simply type <strong><em>theme</em></strong> followed by tab on the console to learn about the different themes and how to add them to an existing ggplot.</p>
 </div>
 <div id="step-12-create-publication-ready-plots-using-ggplot2-and-dplyr" class="section level3">
@@ -539,7 +544,7 @@ p6</code></pre>
 library(patchwork)
 p&lt;-(p1)/(p2)
 #Save plots
-ggsave(&quot;plotsB_2022jul2.pdf&quot;, p)</code></pre>
+ggsave(&quot;plotsB_2023jan17.pdf&quot;, p)</code></pre>
 <p><strong><em>Question 9:</em></strong> How would you modify this code to save the plots next to one another using <em>patchwork</em> (instead of one on top ot the other).<br />
 <strong><em>A/</em></strong></p>
 <p>Now we have explored how to make a few plots using base R and some of the newest plotting options available associated to the package <em>ggplot2</em>. Still, remember that this is the very tiny tip of the iceberg. It will be up to you to take it from here and make significant progress in your R journey coding and making plots. There are almost too many resources online to learn how to visualize data using R, but as a start visit: <em><a href="https://www.r-graph-gallery.com/" class="uri">https://www.r-graph-gallery.com/</a></em> to get inspired with a gallery of different types of charts.</p>
