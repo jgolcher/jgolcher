@@ -538,16 +538,21 @@ with the same plot created using \emph{ggplot2} and associated packages.
 \begin{Highlighting}[]
 \CommentTok{#Now let's use dplyr and ggplot2}
 \CommentTok{#Part 1}
-\CommentTok{#Note that the code gets increasingly complex, as you try to make}
-\CommentTok{#better-looking, customized figures in R}
-\NormalTok{titanic }\OperatorTok{%>%}\StringTok{ }\KeywordTok{head}\NormalTok{(}\DecValTok{10}\NormalTok{) }\CommentTok{#Overview of the first 10 rows.}
-\NormalTok{titanic }\OperatorTok{%>%}\StringTok{ }\KeywordTok{describe_tbl}\NormalTok{() }\CommentTok{#Describes data.}
+\CommentTok{#Note how the base R grammar we learned earlier differs a lot from "ggplot2" and "dplyr" (a series of packages as part of the "Tidyverse") we will use now to visualize the same data:}
+\NormalTok{titanic }\OperatorTok{%>%}\StringTok{ }\KeywordTok{head}\NormalTok{(}\DecValTok{10}\NormalTok{) }\CommentTok{#Overview of the first 10 rows}
+\NormalTok{only_1class <-}\StringTok{ }\KeywordTok{filter}\NormalTok{(titanic, pclass }\OperatorTok{==}\StringTok{ "1"}\NormalTok{) }\CommentTok{#Extract rows that match a given criteria (like subset() in base R)}
+\NormalTok{countstitanic<-}\StringTok{ }\NormalTok{titanic }\OperatorTok{%>%}\StringTok{ }\KeywordTok{count}\NormalTok{(sex,pclass,age, }\DataTypeTok{sort =} \OtherTok{TRUE}\NormalTok{)}
+\NormalTok{widetitanic <-}\StringTok{ }\NormalTok{countstitanic }\OperatorTok{%>%}\StringTok{ }\KeywordTok{spread}\NormalTok{(sex,n) }\CommentTok{#Sometimes we want to have a "wide" format}
+\NormalTok{longtitanic <-}\StringTok{ }\NormalTok{widetitanic }\OperatorTok{%>%}\StringTok{ }\KeywordTok{gather}\NormalTok{( sex, n, female}\OperatorTok{:}\NormalTok{male, }\DataTypeTok{factor_key=}\OtherTok{TRUE}\NormalTok{)}\CommentTok{#this can reverse back to "long"}
+\NormalTok{titanic }\OperatorTok{%>%}\StringTok{ }\KeywordTok{describe_tbl}\NormalTok{() }\CommentTok{#Describes data}
+\NormalTok{summary_titanic<-}\StringTok{ }\NormalTok{titanic }\OperatorTok{%>%}\KeywordTok{group_by}\NormalTok{(sex, pclass) }\OperatorTok{%>%}\NormalTok{dplyr}\OperatorTok{::}\KeywordTok{summarize}\NormalTok{(}\DataTypeTok{Mean =} \KeywordTok{mean}\NormalTok{(age, }\DataTypeTok{na.rm=}\OtherTok{TRUE}\NormalTok{))}\CommentTok{#Generate summary}
 
 \CommentTok{#Plot to summarize passenger age with ggplot}
 \NormalTok{p1<-titanic }\OperatorTok{%>%}\StringTok{ }\KeywordTok{drop_na}\NormalTok{() }\OperatorTok{%>%}\StringTok{ }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\NormalTok{age))}\OperatorTok{+}
 \StringTok{  }\KeywordTok{geom_histogram}\NormalTok{(}\DataTypeTok{fill=}\KeywordTok{rainbow}\NormalTok{(}\KeywordTok{length}\NormalTok{(}\DecValTok{1}\OperatorTok{:}\DecValTok{8}\NormalTok{)),}\DataTypeTok{bins=}\DecValTok{8}\NormalTok{,}\DataTypeTok{show.legend =} \OtherTok{FALSE}\NormalTok{)}\OperatorTok{+}
 \StringTok{  }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{x =} \StringTok{"age"}\NormalTok{)}
 \NormalTok{p1}
+\CommentTok{#Packages like "dplyr" and "ggplot2" do a lot of the hard initial coding/data wrangling for you, giving you more time to focus on more advanced functions to use with your data.}
 \end{Highlighting}
 \end{Shaded}
 
@@ -638,7 +643,7 @@ how to arrange and export ggplot figures using the package
 \KeywordTok{library}\NormalTok{(patchwork)}
 \NormalTok{p<-(p1)}\OperatorTok{/}\NormalTok{(p2)}
 \CommentTok{#Save plots}
-\KeywordTok{ggsave}\NormalTok{(}\StringTok{"plotsB_2022jul2.pdf"}\NormalTok{, p)}
+\KeywordTok{ggsave}\NormalTok{(}\StringTok{"plotsB_2023jan17.pdf"}\NormalTok{, p)}
 \end{Highlighting}
 \end{Shaded}
 
