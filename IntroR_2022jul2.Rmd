@@ -6,7 +6,7 @@ output:
   html_notebook: default
   pdf_document: default
 ---
-<!--# Modified from Workshop Intro to R 2018 co-taught by Dr. Jessica Rick and Dr. Jimena Golcher-Benavides-->
+<!--# Modified from Workshop Intro to R 2018 co-taught by Dr. Jessica Rick and Dr. Jimena Golcher-Benavides, Last Update: 2023 Jan 17-->
 
 The goal of this tutorial is to introduce you to one of the most commonly used programming languages in computational biology: **R**. Throughout this tutorial, you can think of learning **R** as learning how to use a specialized smartphone, and learning the specific **R packages** as the various apps designed to help you do different tasks computational biologists do.
 
@@ -233,7 +233,7 @@ Very often we have data that we want to import into R, there are several formats
 
 We previouly saved our data as a *.csv*, to import these data, we can just use the **read.csv()** function ***-as long as the file is contained in our current folder used as working directory.***
 
-```{r}
+```{r,eval=FALSE}
 #Import data as csv
 imported_df1<-read.csv("df_2022jul2.csv", header=T)
 ```
@@ -292,19 +292,24 @@ We just created a simple histogram using base R to use as comparison with the sa
 ```{r, eval=FALSE}
 #Now let's use dplyr and ggplot2
 #Part 1
-#Note that the code gets increasingly complex, as you try to make
-#better-looking, customized figures in R
-titanic %>% head(10) #Overview of the first 10 rows.
-titanic %>% describe_tbl() #Describes data.
+#Note how the base R grammar we learned earlier differs a lot from "ggplot2" and "dplyr" (a series of packages as part of the "Tidyverse") we will use now to visualize the same data:
+titanic %>% head(10) #Overview of the first 10 rows
+only_1class <- filter(titanic, pclass == "1") #Extract rows that match a given criteria (like subset() in base R)
+countstitanic<- titanic %>% count(sex,pclass,age, sort = TRUE)
+widetitanic <- countstitanic %>% spread(sex,n) #Sometimes we want to have a "wide" format
+longtitanic <- widetitanic %>% gather( sex, n, female:male, factor_key=TRUE)#this can reverse back to "long"
+titanic %>% describe_tbl() #Describes data
+summary_titanic<- titanic %>%group_by(sex, pclass) %>%dplyr::summarize(Mean = mean(age, na.rm=TRUE))#Generate summary
 
 #Plot to summarize passenger age with ggplot
 p1<-titanic %>% drop_na() %>% ggplot(aes(x=age))+
   geom_histogram(fill=rainbow(length(1:8)),bins=8,show.legend = FALSE)+
   labs(x = "age")
 p1
+#Packages like "dplyr" and "ggplot2" do a lot of the hard initial coding/data wrangling for you, giving you more time to focus on more advanced functions to use with your data.
 
 ```
-The histogram created using this simple ggplot Rcode is more attractive, but we can do a lot more to customize this plot. For instance you can try adding different themes (e.g., classic, bw, minimal). Simply type ***theme*** followed by tab on the console to learn about the different themes and how to add them to an existing ggplot. 
+The histogram created using this simple ggplot Rcode is more attractive, but we can do a lot more to customize this plot. For instance you can try adding different themes (e.g., classic, bw, minimal). Simply type ***theme*** followed by tab on the console to learn about the different themes and how to add them to an existing ggplot.
 
 ### Step 12:  Create publication-ready plots using ggplot2 and dplyr
 ```{r, eval=FALSE}
@@ -364,7 +369,7 @@ In this example we went beyond simply plotting using base R to practice data re-
 library(patchwork)
 p<-(p1)/(p2)
 #Save plots
-ggsave("plotsB_2022jul2.pdf", p)
+ggsave("plotsB_2023jan17.pdf", p)
 ```
 
 ***Question 9:*** How would you modify this code to save the plots next to one another using *patchwork* (instead of one on top ot the other).  
