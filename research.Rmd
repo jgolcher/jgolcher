@@ -19,7 +19,7 @@ output:
 
 <!-- This adds the floating image of my study organisms to the right of the text.  -->
 
-<p style="max-width: 40%; float: right;">
+<p style="max-width: 40%; float: bottom;">
 ![Alt Picture Text](FW_2021.png "tree")
 </p>
 #### Soon + info here on current invasive carp research -stay tuned!
