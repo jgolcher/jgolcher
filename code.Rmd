@@ -8,10 +8,5 @@ output:
 ---
 Please click [2022_R_Tutorial](IntroR_2022jul2.nb.html) to find a pdf file with a my most recent R tutorial for beginners. 
 Rmarkdown file and associated data can be accessed here [here](https://github.com/jgolcher/repository/tree/main/docs/Rtutorial). 
-<script>
-   $(document).ready(function() {
-     $head = $('#header');
-     $head.prepend('<img src=\"websitesidebar-01.png\" style=\"float: right;width: 250px;\"/>')
-   });
-</script>
+
 
