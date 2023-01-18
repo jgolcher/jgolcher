@@ -77,6 +77,8 @@ install.packages("tidyr") #used to tidy messy data
 install.packages("tibble") #used together with dplyr to make simple frames
 install.packages("explore") #used to do exploratory analyses
 install.packages("patchwork") #creates multiplots / composer of plots
+install.packages("tidyverse")
+library("tidyverse")
 library("ggplot2") #Running the library() command "activates" the packages
 library("dplyr")
 library("tidyr")
@@ -297,9 +299,9 @@ titanic %>% head(10) #Overview of the first 10 rows
 only_1class <- filter(titanic, pclass == "1") #Extract rows that match a given criteria (like subset() in base R)
 countstitanic<- titanic %>% count(sex,pclass,age, sort = TRUE)
 widetitanic <- countstitanic %>% spread(sex,n) #Sometimes we want to have a "wide" format
-longtitanic <- widetitanic %>% gather( sex, n, female:male, factor_key=TRUE)#this can reverse back to "long"
+longtitanic <- widetitanic %>% gather(sex, n, female:male, factor_key=TRUE)#this can reverse back to "long"
 titanic %>% describe_tbl() #Describes data
-summary_titanic<- titanic %>%group_by(sex, pclass) %>%dplyr::summarize(Mean = mean(age, na.rm=TRUE))#Generate summary
+summary_titanic<- titanic %>% group_by(sex, pclass) %>%dplyr::summarize(Mean = mean(age, na.rm=TRUE))#Generate summary
 
 #Plot to summarize passenger age with ggplot
 p1<-titanic %>% drop_na() %>% ggplot(aes(x=age))+
